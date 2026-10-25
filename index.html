@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#25272b">
+  <title>Leise — Pomodoro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="history.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header><a class="brand" href="./" aria-label="Leise, Startseite"><span class="brand-icon">◷</span> leise<span class="brand-dot">.</span></a><span class="header-note">WENIGER LÄRM. MEHR FOKUS.</span><button id="sound" class="icon-button" aria-label="Ton ausschalten" aria-pressed="true" title="Ton">♪</button></header>
+    <main>
+      <div class="eyebrow"><span></span> ZEIT FÜR DAS WESENTLICHE</div>
+      <h1>Eine Einheit nach der anderen.</h1>
+      <p class="intro">Schaffe etwas Raum für deine Gedanken.</p>
+      <section class="timer-card" aria-label="Pomodoro-Timer">
+        <div class="mode-tabs" role="group" aria-label="Timer-Modus"><button class="active" data-mode="focus" aria-pressed="true">Lernen</button><button data-mode="short" aria-pressed="false">Pause</button><button data-mode="long" aria-pressed="false">Lange Pause</button></div>
+        <div class="clock">
+          <svg viewBox="0 0 320 320" aria-hidden="true"><circle class="track" cx="160" cy="160" r="145"/><circle id="progress" cx="160" cy="160" r="145"/></svg>
+          <div class="clock-content"><span id="phase">ZEIT, DICH ZU KONZENTRIEREN</span><div id="time" role="timer" aria-label="Noch 25 Minuten">25<span>:</span>00</div><span class="clock-caption" id="caption">Nur du und deine Aufgabe.</span></div>
+        </div>
+        <div class="controls"><button id="reset" class="icon-button round" aria-label="Einheit neu starten" title="Zurücksetzen">↺</button><button id="start" class="start"><span id="play-icon">▶</span><span id="start-label">Starten</span></button><button id="skip" class="icon-button round" aria-label="Zur nächsten Phase wechseln" title="Nächste Phase">↠</button></div>
+        <div class="session-progress"><div id="dots" aria-label="Abgeschlossene Einheiten im Zyklus: 0"><i></i><i></i><i></i><i></i></div><span id="session-label">Einheit 1 von 4</span></div>
+      </section>
+      <section class="settings" aria-labelledby="settings-heading"><div class="settings-heading"><h2 id="settings-heading">Dein Rhythmus</h2><span>SO, WIE ES DIR PASST</span></div><div class="duration-grid"><label>Lernen<div class="input-wrap"><input id="focus-duration" type="number" min="1" max="180" value="25" inputmode="numeric"><span>Min.</span></div></label><label>Pause<div class="input-wrap"><input id="short-duration" type="number" min="1" max="180" value="5" inputmode="numeric"><span>Min.</span></div></label><label>Lange Pause<div class="input-wrap"><input id="long-duration" type="number" min="1" max="180" value="15" inputmode="numeric"><span>Min.</span></div></label></div><div class="rounds-row"><label for="rounds">Lerneinheiten bis zur langen Pause</label><div class="input-wrap"><input id="rounds" type="number" min="1" max="12" value="4" inputmode="numeric" aria-describedby="settings-note"></div></div><div class="auto-row"><div><label for="auto">Automatisch fortsetzen</label><p>Die nächste Phase startet von selbst</p></div><input id="auto" class="switch" type="checkbox" role="switch"></div><p class="settings-note" id="settings-note" aria-live="polite">Lange Pause nach jeder vierten Lerneinheit.</p></section>
+      <section class="settings activity" aria-labelledby="activity-heading">
+        <div class="settings-heading"><h2 id="activity-heading">Deine Aktivität</h2><span>LERNEN & PAUSEN</span></div>
+        <div class="calendar-nav"><button id="previous-month" class="icon-button" aria-label="Vorheriger Monat">‹</button><h3 id="calendar-month" aria-live="polite"></h3><button id="next-month" class="icon-button" aria-label="Nächster Monat">›</button></div>
+        <div class="weekdays" aria-hidden="true"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+        <div id="calendar-days" class="calendar-days" role="group" aria-label="Kalendertage"></div>
+        <div class="calendar-legend"><span><i></i> Lernen</span><span><i></i> Pausen</span></div>
+        <p id="day-details" class="day-details" aria-live="polite"></p>
+        <p id="month-summary" class="month-summary"></p>
+        <div class="backup-actions"><button id="export-history">Backup exportieren</button><button id="import-history">Backup importieren</button><input id="history-file" type="file" accept="application/json,.json" hidden></div>
+        <p class="settings-note">Auf diesem Browser gespeichert. Sichere deine Daten regelmäßig als Datei. Keine automatische Synchronisierung. Gezählt wird nur, solange der Timer läuft; nach dem Schließen endet die Erfassung.</p>
+        <p id="history-status" class="settings-note" role="status"></p>
+      </section>
+      <footer><span class="footer-mark">✳</span> Du musst nicht alles schaffen. Fang mit einer Sache an.</footer>
+    </main>
+    <div id="announcement" class="sr-only" aria-live="polite"></div>
+  </div>
+</body>
+</html>
